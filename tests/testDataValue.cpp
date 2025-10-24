@@ -1,4 +1,4 @@
-#include "../src/dataValue.hpp"
+#include "../include/dataValue.hpp"
 
 #include <iostream>
 #include <fstream>

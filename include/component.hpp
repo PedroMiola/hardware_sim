@@ -1,8 +1,16 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
-#include <string>
 #include "dataValue.hpp"
+
+#include <string>
+#include <unordered_map>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
+#include <algorithm>
+#include <cctype>
 
 #define DATA_TYPE double
 
@@ -10,7 +18,11 @@ class Component {
 protected:
     std::string type;
     std::string label;
+    std::string configFilePath;
+
 public:
+    virtual std::unordered_map<std::string, std::vector<std::string>> parseKeyValues(const std::string &filepath);
+    virtual std::vector<std::string> splitWhitespace(const std::string &s);
 
     virtual void simulate() = 0;
     virtual void load() = 0;
@@ -18,8 +30,10 @@ public:
     //Setter and Getters
     virtual std::string getType() {return type;};
     virtual std::string getLabel(){return label;};
+    virtual std::string getConfigFilePath(){return configFilePath;};
     virtual void setLabel(const std::string &newLabel) {label = newLabel;};
     virtual void setType(const std::string &newType) {type = newType;};
+    virtual void setConfigFilePath(const std::string &newPath) {configFilePath = newPath;};
 }; 
 
 class ReadableComponent : public Component {

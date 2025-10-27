@@ -11,6 +11,7 @@ private:
     unsigned int refreshRate;
     unsigned int accessCounter = 0;
     std::ostream *outputStream = &std::cout;
+    std::string sourceCoponentLabel;
 
 public:
     DataValue<DATA_TYPE> readSource();
@@ -23,6 +24,8 @@ public:
     // Setters and Getters
     unsigned int getRefreshRate();
     void setRefreshRate(const unsigned int rate);
+    std::string getSourceLabel() {return sourceCoponentLabel;};
+    void setSourceLabel(const std::string &newLabel) {sourceCoponentLabel = newLabel;};
     void setSourceComponent(ReadableComponent *newSource);
 };
 

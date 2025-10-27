@@ -21,7 +21,23 @@ void Display::setOutputStream(std::ostream &os) {
     outputStream = &os;
 }
 
-void Display::load() { //TODO: Make load
+void Display::load() {
+    auto config = parseKeyValues(configFilePath);
+    if(!config.count("REFRESH_RATE")) throw std::runtime_error("Display configuration file " + configFilePath + " missing REFRESH_RATE");
+    if(!config.count("TYPE")) throw std::runtime_error("Display configuration file " + configFilePath + " missing TYPE");
+    if(!config.count("SOURCE")) throw std::runtime_error("Display configuration file " + configFilePath + " missing SOURCE");
+    if(config.count("LABEL") > 1) throw std::runtime_error("Display configuration file " + configFilePath + " has multiple LABEL entries");
+    if(config.count("REFRESH_RATE") > 1) throw std::runtime_error("Display configuration file " + configFilePath + " has multiple REFRESH_RATE entries");
+    if(config.count("TYPE") > 1) throw std::runtime_error("Display configuration file " + configFilePath + " has multiple TYPE entries");
+    if(config.count("SOURCE") > 1) throw std::runtime_error("Display configuration file " + configFilePath + " has multiple SOURCE entries");
+
+    if(config.size() > 4) throw std::runtime_error("Display configuration file " + configFilePath + " has unknown entries");
+
+    if(!config.count("LABEL"))setLabel("Display 1");
+    setType(config["TYPE"][0]);
+    setRefreshRate(std::stoi(config["REFRESH_RATE"][0]));
+    setSourceComponent(nullptr);
+    setSourceLabel(config["SOURCE"][0]);
 }
 
 unsigned int Display::getRefreshRate() {

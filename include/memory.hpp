@@ -10,7 +10,7 @@ private:
     std::deque<DataValue<DATA_TYPE>> memory_buffer;
     int size;
     int access_time;
-    int access_counter;
+    int access_counter = 0;
     ReadableComponent *sourceComponent;
 
 public:
@@ -20,17 +20,19 @@ public:
     void storeData(const DataValue<DATA_TYPE> &data);
     int getNumberOfStoredData();
 
+    // Readable Components Methods
+    void simulate() override;
+    void load() override;
+    DataValue<DATA_TYPE> read() override;
+
+    //Setters and Getters
     int getSize();
     void setSize(int newSize);
     int getAccessTime();
     void setAccessTime(int newAccessTime);
     std::string getSourceLabel();
-
     void setSourceComponent(ReadableComponent *newSource);
 
-    void simulate() override;
-    void load() override;
-    DataValue<DATA_TYPE> read() override;
 };
 
 #endif

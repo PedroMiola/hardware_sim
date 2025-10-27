@@ -1,7 +1,7 @@
 #ifndef DATAVALUE_HPP
 #define DATAVALUE_HPP
 
-#include<utility>
+#include <utility>
 
 template <typename T> class DataValue {
 private:
@@ -27,4 +27,4 @@ public:
     }
 };
 
-#endif
+#endif //DATAVALUE_HPP

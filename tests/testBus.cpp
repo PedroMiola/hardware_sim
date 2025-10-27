@@ -150,7 +150,6 @@ int main() {
     }
 
     // ---------- Test 4: source runs out mid-chunk (no spurious values) ----------
-    // Expect exactly one valid value to appear after the latency; no fabricated extra valids.
     {
         Bus bus;
         FakeSource src("S4");

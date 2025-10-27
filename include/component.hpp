@@ -14,12 +14,12 @@ public:
 
     virtual void simulate() = 0;
     virtual void load() = 0;
+
+    //Setter and Getters
     virtual std::string getType() {return type;};
     virtual std::string getLabel(){return label;};
     virtual void setLabel(const std::string &newLabel) {label = newLabel;};
     virtual void setType(const std::string &newType) {type = newType;};
-
-    //virtual ~Component() = 0;
 }; 
 
 class ReadableComponent : public Component {

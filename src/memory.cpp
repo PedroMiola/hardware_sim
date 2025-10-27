@@ -26,8 +26,8 @@ int Memory::getNumberOfStoredData() {
     return memory_buffer.size();
 }
 
-DataValue<DATA_TYPE> Memory::readSource() { //TODO implement reading from source
-    return DataValue<DATA_TYPE>();
+DataValue<DATA_TYPE> Memory::readSource() {
+    return sourceComponent->read();
 }
 
 int Memory::getSize() {
@@ -62,6 +62,8 @@ void Memory::simulate() {
             storeData(newData);
             newData = readSource();
         }
+    } else {
+        access_counter++;
     }
 }
 void Memory::load() { //TODO implement loading from config file

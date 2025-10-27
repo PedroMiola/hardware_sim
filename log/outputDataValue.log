@@ -1,0 +1,4 @@
+dv1 is valid (expected '0'): 0, value (expected '0'): 0
+dv2 is valid (expected '1'): 1, value (expected '42'): 43
+After setting dv1, is valid (expected '1'): 1, value (expected '100'): 100
+After unsetting dv2, is valid (expected '0'): 0

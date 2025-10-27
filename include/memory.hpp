@@ -3,14 +3,15 @@
 
 #include "component.hpp"
 #include <deque>
+#include <memory>
 
 class Memory : public ReadableComponent {
 private:
     std::deque<DataValue<DATA_TYPE>> memory_buffer;
-    std::string source;
     int size;
     int access_time;
     int access_counter;
+    std::unique_ptr<ReadableComponent> sourceComponent;
 public:
     DataValue<DATA_TYPE> readOldestData();
     DataValue<DATA_TYPE> readSource();

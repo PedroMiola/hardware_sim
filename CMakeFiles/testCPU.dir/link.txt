@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/testCPU.dir/tests/testCPU.cpp.o CMakeFiles/testCPU.dir/src/cpu.cpp.o CMakeFiles/testCPU.dir/src/memory.cpp.o -o testCPU 

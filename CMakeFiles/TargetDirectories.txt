@@ -1,6 +1,0 @@
-/home/jmarqueti/proj_oop_3a/hardware_sim/CMakeFiles/simulator.dir
-/home/jmarqueti/proj_oop_3a/hardware_sim/CMakeFiles/testCPU.dir
-/home/jmarqueti/proj_oop_3a/hardware_sim/CMakeFiles/testDataValue.dir
-/home/jmarqueti/proj_oop_3a/hardware_sim/CMakeFiles/test.dir
-/home/jmarqueti/proj_oop_3a/hardware_sim/CMakeFiles/edit_cache.dir
-/home/jmarqueti/proj_oop_3a/hardware_sim/CMakeFiles/rebuild_cache.dir

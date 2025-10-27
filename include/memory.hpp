@@ -11,7 +11,8 @@ private:
     int size;
     int access_time;
     int access_counter;
-    std::unique_ptr<ReadableComponent> sourceComponent;
+    ReadableComponent *sourceComponent;
+
 public:
     DataValue<DATA_TYPE> readOldestData();
     DataValue<DATA_TYPE> readSource();
@@ -23,10 +24,10 @@ public:
     void setSize(int newSize);
     int getAccessTime();
     void setAccessTime(int newAccessTime);
-    std::string getSource();
-    void setSource(const std::string &newSource);
+    std::string getSourceLabel();
 
-    
+    void setSourceComponent(ReadableComponent *newSource);
+
     void simulate() override;
     void load() override;
     DataValue<DATA_TYPE> read() override;

@@ -46,12 +46,12 @@ void Memory::setAccessTime(int newAccessTime) {
     access_time = newAccessTime;
 }
 
-std::string Memory::getSource() {
-    return source;
+std::string Memory::getSourceLabel() {
+    return sourceComponent->getLabel();
 }
 
-void Memory::setSource(const std::string &newSource) {
-    source = newSource;
+void Memory::setSourceComponent(ReadableComponent *newSource) {
+    sourceComponent = newSource;
 }
 
 void Memory::simulate() {
@@ -68,8 +68,6 @@ void Memory::simulate() {
 }
 void Memory::load() { //TODO implement loading from config file
 }
-
-
 
 DataValue<DATA_TYPE> Memory::read() {
     return readOldestData();

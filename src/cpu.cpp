@@ -1,8 +1,4 @@
 #include "../include/cpu.hpp"
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <stdexcept>
 
 CPU::CPU(int freq, int corec, const std::string& programp) // set frequency, core count and program path, parsing the file and building the program
     : frequency(freq),
@@ -22,7 +18,7 @@ DataValue<DATA_TYPE> CPU::read() {
     if (dataRegister.empty()) {
         return DataValue<DATA_TYPE>(); // invalid value
     } else {
-        DataValue val = dataRegister.front();
+        DataValue<DATA_TYPE> val = dataRegister.front();
         dataRegister.pop();
         return val;
     }
@@ -54,6 +50,7 @@ void CPU::execute_instruction(instruction inst) {
     DATA_TYPE op1, op2;
     std::tie(op, op1, op2) = inst;
 
+    
     DATA_TYPE result = 0.0f;
 
     switch (op) {
@@ -65,7 +62,8 @@ void CPU::execute_instruction(instruction inst) {
         default: result = 0.0f; break;
     }
 
-    dataRegister.push(DataValue(result));
+    DataValue<DATA_TYPE> returnValue (result);
+    dataRegister.push(returnValue);
 }
 
 void CPU::parseProgram() {

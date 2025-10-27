@@ -7,6 +7,10 @@
 #include <queue>
 #include <list>
 #include <tuple>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <stdexcept>
 
 enum operation{NOP, ADD, SUB, MUL, DIV};
 

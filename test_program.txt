@@ -1,5 +1,0 @@
-ADD 2 3
-SUB 10 4
-MUL 3 5
-DIV 8 2
-NOP 0 0

@@ -31,6 +31,8 @@ void CPU::load() {
     setCoreCount(std::stoi(config["CORES"][0]));
     setFrequency(std::stoi(config["FREQUENCY"][0]));
     setProgramPath(config["PROGRAM"][0]);
+
+    parseProgram();
 }
 
 DataValue<DATA_TYPE> CPU::read() {

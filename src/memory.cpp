@@ -1,5 +1,4 @@
 #include "../include/memory.hpp"
-#include <iostream>
 
 DataValue<DATA_TYPE> Memory::readOldestData() {
     if (memory_buffer.empty()) {

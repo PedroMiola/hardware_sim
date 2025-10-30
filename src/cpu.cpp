@@ -11,7 +11,26 @@ CPU::CPU(int freq, int corec, const std::string& programp) // set frequency, cor
 }
 
 void CPU::load() {
-	std::cout <<"initialized CPU!" << std::endl;
+	auto config = parseKeyValues();
+
+    if(!config.count("LABEL")) throw std::runtime_error("CPU configuration file " + configFilePath + " missing LABEL");
+    if(!config.count("CORES")) throw std::runtime_error("CPU configuration file " + configFilePath + " missing CORES");
+    if(!config.count("TYPE")) throw std::runtime_error("CPU configuration file " + configFilePath + " missing TYPE");
+    if(!config.count("FREQUENCY")) throw std::runtime_error("CPU configuration file " + configFilePath + " missing FREQUENCY");
+    if(!config.count("PROGRAM")) throw std::runtime_error("CPU configuration file " + configFilePath + " missing PROGRAM");
+    if(config["LABEL"].size() > 1) throw std::runtime_error("CPU configuration file " + configFilePath + " has multiple LABEL entries");
+    if(config["CORES"].size() > 1) throw std::runtime_error("CPU configuration file " + configFilePath + " has multiple CORES entries");
+    if(config["TYPE"].size() > 1) throw std::runtime_error("CPU configuration file " + configFilePath + " has multiple TYPE entries");
+    if(config["FREQUENCY"].size() > 1) throw std::runtime_error("CPU configuration file " + configFilePath + " has multiple FREQUENCY entries");
+    if(config["PROGRAM"].size() > 1) throw std::runtime_error("CPU configuration file " + configFilePath + " has multiple PROGRAM entries");
+
+    if(config.size() != 5) throw std::runtime_error("CPU configuration file " + configFilePath + " has unknown entries");
+
+    setLabel(config["LABEL"][0]);
+    setType(config["TYPE"][0]);
+    setCoreCount(std::stoi(config["CORES"][0]));
+    setFrequency(std::stoi(config["FREQUENCY"][0]));
+    setProgramPath(config["PROGRAM"][0]);
 }
 
 DataValue<DATA_TYPE> CPU::read() {

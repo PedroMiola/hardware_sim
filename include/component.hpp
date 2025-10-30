@@ -19,6 +19,8 @@ protected:
     std::string type;
     std::string label;
     std::string configFilePath;
+    std::string sourceCoponentLabel = "";
+
 
 public:
     virtual std::unordered_map<std::string, std::vector<std::string>> parseKeyValues();
@@ -34,6 +36,8 @@ public:
     virtual void setLabel(const std::string &newLabel) {label = newLabel;};
     virtual void setType(const std::string &newType) {type = newType;};
     virtual void setConfigFilePath(const std::string &newPath) {configFilePath = newPath;};
+    virtual std::string getSourceLabel(){return sourceCoponentLabel;};
+    virtual void setSourceLabel(const std::string &newLabel) {sourceCoponentLabel = newLabel;};
 }; 
 
 class ReadableComponent : public Component {

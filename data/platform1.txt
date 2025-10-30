@@ -1,0 +1,7 @@
+../data/mem1.txt
+../data/mem2.txt
+../data/bus1.txt
+../data/bus2.txt
+../data/cpu1.txt
+../data/cpu2.txt
+../data/display1.txt

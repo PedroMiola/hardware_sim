@@ -11,7 +11,6 @@ private:
     int size;
     int access_time;
     int access_counter = 0;
-    std::string sourceCoponentLabel;
     ReadableComponent *sourceComponent;
 
 public:
@@ -31,8 +30,6 @@ public:
     void setSize(int newSize);
     int getAccessTime();
     void setAccessTime(int newAccessTime);
-    std::string getSourceLabel(){return sourceCoponentLabel;};
-    void setSourceLabel(const std::string &newLabel) {sourceCoponentLabel = newLabel;};
     void setSourceComponent(ReadableComponent *newSource);
 
 };

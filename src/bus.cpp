@@ -23,11 +23,11 @@ void Bus::simulate() {
 void Bus::load(){
     auto config = parseKeyValues();
     if(!config.count("LABEL")) throw std::runtime_error("Bus configuration file " + configFilePath + " missing LABEL");
-    if(!config.count("WIDTH")) throw std::runtime_error("Bus configuration file " + configFilePath + " missing BUS_WIDTH");
+    if(!config.count("WIDTH")) throw std::runtime_error("Bus configuration file " + configFilePath + " missing WIDTH");
     if(!config.count("TYPE")) throw std::runtime_error("Bus configuration file " + configFilePath + " missing TYPE");
     if(!config.count("SOURCE")) throw std::runtime_error("Bus configuration file " + configFilePath + " missing SOURCE");
     if(config["LABEL"].size() > 1) throw std::runtime_error("Bus configuration file " + configFilePath + " has multiple LABEL entries");
-    if(config["WIDTH"].size() > 1) throw std::runtime_error("Bus configuration file " + configFilePath + " has multiple BUS_WIDTH entries");
+    if(config["WIDTH"].size() > 1) throw std::runtime_error("Bus configuration file " + configFilePath + " has multiple WIDTH entries");
     if(config["TYPE"].size() > 1) throw std::runtime_error("Bus configuration file " + configFilePath + " has multiple TYPE entries");
     if(config["SOURCE"].size() > 1) throw std::runtime_error("Bus configuration file " + configFilePath + " has multiple SOURCE entries");
 

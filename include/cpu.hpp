@@ -18,6 +18,7 @@ typedef std::tuple<operation,DATA_TYPE,DATA_TYPE> instruction;
 
 class CPU : public ReadableComponent {
 public:
+    CPU () = default;
     CPU(int frequency, int coreCount, const std::string& programPath);
     void load();
 
@@ -37,12 +38,12 @@ public:
     void simulate();
 
 private:
-    int frequency;
-    int coreCount;
+    int frequency = 0;
+    int coreCount = 0;
     std::string programPath;
-    int activeCoreIndex;
+    int activeCoreIndex = 0;
 
-    int instructionPointer;
+    int instructionPointer = 0;
     std::list<instruction> program;
     std::queue<DataValue<DATA_TYPE>> dataRegister;
 

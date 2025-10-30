@@ -202,7 +202,43 @@ int main(){
         else logExpect(display.getLabel() == "Display 1", failures, log, "Display label defaulted to \"Display 1\"");
     }
 
-    
+    // ---------- Test 6: testing normal cpu load ----------
+    {
+        CPU cpu;
+        cpu.setConfigFilePath(CONFIG_PATH + std::string("cpu1.txt"));
+
+        auto cfg = cpu.parseKeyValues();
+
+        try {
+            cpu.load();
+            logExpect(true, failures, log, "cpu.load() did not throw");
+        } catch (const std::exception &e) {
+            logExpect(false, failures, log, std::string("cpu.load() threw: ") + e.what());
+            return failures;
+        }
+
+        // LABEL
+        if (cfg.count("LABEL")) logExpect(cpu.getLabel() == cfg["LABEL"][0], failures, log, "CPU label matches file (" + cpu.getLabel() + ")");
+        else logExpect(false, failures, log, "CPU file is missing LABEL");
+
+        // TYPE
+        if (cfg.count("TYPE")) logExpect(cpu.getType() == cfg["TYPE"][0], failures, log, "CPU type matches file (" + cpu.getType() + ")");
+        else logExpect(false, failures, log, "CPU file is missing TYPE");
+
+        // FREQUENCY
+        if (cfg.count("FREQUENCY")) {
+            int expected = std::stoi(cfg["FREQUENCY"][0]);
+            int actual = cpu.getFrequency();
+            logExpect(actual == expected, failures, log, "CPU frequency matches file (" + std::to_string(actual) + ")");
+        } else logExpect(false, failures, log, "CPU file is missing FREQUENCY");
+
+        // CORES
+        if (cfg.count("CORES")) {
+            int expected = std::stoi(cfg["CORES"][0]);
+            int actual = cpu.getCoreCount();
+            logExpect(actual == expected, failures, log, "CPU core count matches file (" + std::to_string(actual) + ")");
+        } else logExpect(false, failures, log, "CPU file is missing CORES");
+    }
 
     if (failures == 0) log << "All Load tests PASSED." << std::endl;
     else log << failures << " Load test(s) FAILED." << std::endl;

@@ -21,7 +21,7 @@ protected:
     std::string configFilePath;
 
 public:
-    virtual std::unordered_map<std::string, std::vector<std::string>> parseKeyValues(const std::string &filepath);
+    virtual std::unordered_map<std::string, std::vector<std::string>> parseKeyValues();
     virtual std::vector<std::string> splitWhitespace(const std::string &s);
 
     virtual void simulate() = 0;

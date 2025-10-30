@@ -1,4 +1,5 @@
 #include "../include/memory.hpp"
+#include <iostream>
 
 DataValue<DATA_TYPE> Memory::readOldestData() {
     if (memory_buffer.empty()) {
@@ -63,25 +64,25 @@ void Memory::simulate() {
     }
 }
 void Memory::load() { 
-    auto config = parseKeyValues(configFilePath);
+    auto config = parseKeyValues();
 
     if(!config.count("LABEL")) throw std::runtime_error("Memory configuration file " + configFilePath + " missing LABEL");
     if(!config.count("SIZE")) throw std::runtime_error("Memory configuration file " + configFilePath + " missing SIZE");
-    if(!config.count("ACCESS_TIME")) throw std::runtime_error("Memory configuration file " + configFilePath + " missing ACCESS_TIME");
+    if(!config.count("ACCESS")) throw std::runtime_error("Memory configuration file " + configFilePath + " missing ACCESS_TIME");
     if(!config.count("TYPE")) throw std::runtime_error("Memory configuration file " + configFilePath + " missing TYPE");
     if(!config.count("SOURCE")) throw std::runtime_error("Memory configuration file " + configFilePath + " missing SOURCE");
-    if(config.count("LABEL") > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple LABEL entries");
-    if(config.count("SIZE") > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple SIZE entries");
-    if(config.count("ACCESS_TIME") > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple ACCESS_TIME entries");
-    if(config.count("TYPE") > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple TYPE entries");
-    if(config.count("SOURCE") > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple SOURCE entries");
+    if(config["LABEL"].size() > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple LABEL entries");
+    if(config["SIZE"].size() > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple SIZE entries");
+    if(config["ACCESS"].size() > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple ACCESS_TIME entries");
+    if(config["TYPE"].size() > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple TYPE entries");
+    if(config["SOURCE"].size() > 1) throw std::runtime_error("Memory configuration file " + configFilePath + " has multiple SOURCE entries");
 
-    if(config.size() > 4 && !config.count("INIT")) throw std::runtime_error("Memory configuration file " + configFilePath + " has unknown entries");
+    if(config.size() != 5) throw std::runtime_error("Memory configuration file " + configFilePath + " has unknown entries");
 
     setLabel(config["LABEL"][0]);
     setType(config["TYPE"][0]);
     setSize(std::stoi(config["SIZE"][0]));
-    setAccessTime(std::stoi(config["ACCESS_TIME"][0]));
+    setAccessTime(std::stoi(config["ACCESS"][0]));
     setSourceComponent(nullptr);
     setSourceLabel(config["SOURCE"][0]);
 }

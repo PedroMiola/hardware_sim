@@ -8,10 +8,10 @@ std::string trim(const std::string &s) {
     return s.substr(b, e - b + 1);
 }
 
-std::unordered_map<std::string, std::vector<std::string>> Component::parseKeyValues(const std::string &filepath) {
-    std::ifstream file(filepath);
+std::unordered_map<std::string, std::vector<std::string>> Component::parseKeyValues() {
+    std::ifstream file(configFilePath);
     if (!file) {
-        throw std::runtime_error("Cannot open configuration file: " + filepath);
+        throw std::runtime_error("Cannot open configuration file: " + configFilePath);
     }
 
     std::unordered_map<std::string, std::vector<std::string>> ouputKeys;
@@ -27,7 +27,7 @@ std::unordered_map<std::string, std::vector<std::string>> Component::parseKeyVal
         unsigned int doubleDots = trimmedLine.find(':');
 
         if(doubleDots == std::string::npos){
-            throw std::runtime_error("Syntax error in configuration file: " + filepath + " at line " + std::to_string(lineNumber) + ": missing ':'");
+            throw std::runtime_error("Syntax error in configuration file: " + configFilePath + " at line " + std::to_string(lineNumber) + ": missing ':'");
         }
 
         std::string key = trim(trimmedLine.substr(0, doubleDots));

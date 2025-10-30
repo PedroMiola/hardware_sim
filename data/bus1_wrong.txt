@@ -1,0 +1,4 @@
+TIPE: BUS
+WIDTH: 3
+SOURCE: Main processing unit
+SOURCE: Display 1

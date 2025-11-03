@@ -25,7 +25,12 @@ int main(int argc, char** argv) {
     }
 
     for (int step = 0; step < simulationSteps; step++) {
-        platform.simulate();
+        try {
+            platform.simulate();
+        } catch (const std::exception& e) {
+            std::cerr << "Error during simulation step output: " << e.what() << std::endl;
+            return 1;
+        }
     }
 
     return 0;

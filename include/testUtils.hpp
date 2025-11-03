@@ -29,11 +29,6 @@ private:
     std::deque<DataValue<DATA_TYPE>> queue;
 };
 
-void logExpect(bool cond, int& fails, std::ofstream& log, const std::string& msg) {
-    if (cond) { log << "[ OK ] " << msg << std::endl; }
-    else { log << "[FAIL] " << msg << std::endl; ++fails; }
-}
-
 template <typename T>  
 DataValue<DATA_TYPE> drainOne(T& t) {
     return t.read();
@@ -49,4 +44,9 @@ int drainAll(T& t, std::vector<DataValue<DATA_TYPE>>& out) {
         count++;
     }
     return count;
+}
+
+void logExpect(bool cond, int& fails, std::ofstream& log, const std::string& msg) {
+    if (cond) { log << "[ OK ] " << msg << std::endl; }
+    else { log << "[FAIL] " << msg << std::endl; ++fails; }
 }
